@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.language.wiz.myapplication";
+option java_outer_classname = "Communication";
+
+package communication;
+
+service CommunicationService {
+    rpc sendPosition(PositionRequest) returns (PositionResponse) {}
+    rpc StreamPositions(PositionRequest) returns (stream PositionResponse) {}
+    rpc Connect (stream RequestCall) returns (stream ResponseCall);
+    rpc streamAudio (stream AudioRequest) returns (AudioResponse);
+}
+
+message PositionRequest {
+    double long = 1;
+    double lat = 2;
+}
+
+message PositionResponse {
+    string message = 1;
+}
+message RequestCall {
+    string requestId = 1;
+}
+message ResponseCall {
+    string requestId = 1;
+}
+
+message AudioRequest {
+    bytes audioPart = 1;
+}
+
+message AudioResponse {
+    string message = 1;
+}

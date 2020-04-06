@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "com.audiostream";
+option java_outer_classname = "Audiostream";
+
+package com.audiostream;
+
+service AudioStreamService {
+  rpc send(stream RawDataRequest) returns (stream RawDataResponse);
+}
+
+message RawDataRequest {
+  bytes sample = 1;
+}
+
+message RawDataResponse {
+  string message = 1;
+}
