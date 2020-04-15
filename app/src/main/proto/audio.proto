@@ -7,7 +7,12 @@ option java_outer_classname = "Audiostream";
 package com.audiostream;
 
 service AudioStreamService {
-  rpc send(stream RawDataRequest) returns (stream RawDataResponse);
+  rpc send (stream RawDataRequest) returns (stream RawDataResponse);
+  rpc receive (StartStreamingRequest) returns (stream RawDataResponse);
+}
+
+message StartStreamingRequest {
+  bool start = 1;
 }
 
 message RawDataRequest {
@@ -15,5 +20,5 @@ message RawDataRequest {
 }
 
 message RawDataResponse {
-  string message = 1;
+  bytes message = 1;
 }
